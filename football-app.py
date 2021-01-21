@@ -12,3 +12,6 @@ This app performs simple webscraping of NFL Football player stats data (focusing
 * **Python libraries:** base64, pandas, streamlit, numpy, matplotlib, seaborn
 * **Data source:** [pro-football-reference.com](https://www.pro-football-reference.com/).
 """)
+
+st.sidebar.header('User Input Features')
+selected_year = st.sidebar.selectbox('Year', list(reversed(range(1990,2020))))
