@@ -15,3 +15,16 @@ This app performs simple webscraping of NFL Football player stats data (focusing
 
 st.sidebar.header('User Input Features')
 selected_year = st.sidebar.selectbox('Year', list(reversed(range(1990,2020))))
+
+# Web scraping of NFL player stats
+
+@st.cache
+def load_data(year):
+    url = "https://www.pro-football-reference.com/years/" + str(year) + "/rushing.htm"
+    html = pd.read_html(url, header = 1)
+    df = html[0]
+    raw = df.drop(df[df.Age == 'Age'].index) # Deletes repeating headers in content
+    raw = raw.fillna(0)
+    playerstats = raw.drop(['Rk'])
+    return playerstats
+playerstats = load_data(selected_year)
