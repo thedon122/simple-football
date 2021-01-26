@@ -32,3 +32,10 @@ playerstats = load_data(selected_year)
 # Sidebar - Team selection
 sorted_unique_team = sorted(playerstats.Tm.unique())
 selected_team = st.sidebar.multiselect('Team', sorted_unique_team, sorted_unique_team)
+
+# Filtering data
+df_selected_team = playerstats[(playerstats.Tm.isin(selected_team)) & (playerstats.Pos.isin(selected_pos))]
+
+st.header('Display Player Stats of Selected Team(s)')
+st.write('Data Dimension: ' + str(df_selected_team.shape[0]) + ' rows and ' + str(df_selected_team.shape[1]) + ' columns.')
+st.dataframe(df_selected_team)
