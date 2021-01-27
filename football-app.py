@@ -49,3 +49,9 @@ def filedownload(df):
     return href
 
 st.markdown(filedownload(df_selected_team), unsafe_allow_html=True)
+
+# Heatmap
+if st.button('Intercorrelation Heatmap'):
+    st.header('Intercorrelation Matrix Heatmap')
+    df_selected_team.to_csv('output.csv',index=False)
+    df = pd.read_csv('output.csv')
